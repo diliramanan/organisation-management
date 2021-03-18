@@ -15,16 +15,16 @@ public class EmployeeService {
 	@Autowired
 	EmployeeRepository empRepo;
 	
-	public Optional<Employee> fetchDetails(int empId) {
-		System.out.println(empRepo.findById(empId).toString());
-		return empRepo.findById(empId); 
+	public Employee fetchEmp(int empId) {
+		Optional<Employee> emp = empRepo.findById(empId);
+		return emp.isPresent()?emp.get():new Employee(); 
 	}
 
-	public void insertEmpDetails(Employee empDetail) {
+	public void insertEmp(Employee empDetail) {
 		empRepo.save(empDetail);
 	}
 
-	public void removeEmpDetails(int empId) {
+	public void removeEmp(int empId) {
 		empRepo.deleteById(empId);
 	}
 
@@ -32,7 +32,7 @@ public class EmployeeService {
 		return empRepo.findAll();
 	}
 
-	public void updateEmpDetails(int empId,Employee empDetail) {
+	public void updateEmp(int empId,Employee empDetail) {
 		Employee empDetailToUpdated = empRepo.getOne(empId);
 		empDetailToUpdated.setEmpName(empDetail.getEmpName());
 		empRepo.save(empDetailToUpdated);

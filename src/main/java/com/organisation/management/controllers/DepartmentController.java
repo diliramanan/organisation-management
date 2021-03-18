@@ -1,10 +1,8 @@
 package com.organisation.management.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,13 +26,13 @@ public class DepartmentController {
 	DepartmentService deptService;
 	
 	@GetMapping("/fetchAll")
-	ResponseEntity<List<Department>> fetchAllDetails(){
-		return new ResponseEntity<>(deptService.fetchAllDeptDetails(), HttpStatus.OK);
+	ResponseEntity<List<Department>> fetchAllDept(){
+		return new ResponseEntity<>(deptService.fetchAllDept(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{deptId}")
-	ResponseEntity<Optional<Department>> departmentDetails(@PathVariable int deptId){
-		return new ResponseEntity<>(deptService.fetchDetails(deptId), HttpStatus.OK);
+	ResponseEntity <Department> fetchDept(@PathVariable int deptId){
+		return new ResponseEntity<>(deptService.fetchDept(deptId), HttpStatus.OK);
 	}
 	
 	@PostMapping("/insert")

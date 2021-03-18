@@ -1,5 +1,7 @@
 package com.organisation.management.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +15,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Employee {
+public class Employee implements Serializable{
+	
+	private static final long serialVersionUID = 1234567L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

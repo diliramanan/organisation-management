@@ -1,7 +1,6 @@
 package com.organisation.management.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,31 +24,31 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService empService;
 	
-	@GetMapping("/fetchAll")
-	ResponseEntity<List<Employee>> fetchAllDetails(){
+	@GetMapping("/fetchAllEmp")
+	ResponseEntity<List<Employee>> fetchAllEmp(){
 		return new ResponseEntity<>(empService.fetchAllEmpDetails(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{empId}")
-	ResponseEntity<Optional<Employee>> employeeDetails(@PathVariable int empId){
-		return new ResponseEntity<>(empService.fetchDetails(empId), HttpStatus.OK);
+	ResponseEntity <Employee> employeeDetail(@PathVariable int empId){
+		return new ResponseEntity<>(empService.fetchEmp(empId), HttpStatus.OK);
 	}
 	
 	@PostMapping("/insert")
 	ResponseEntity<String> insertEmployee(@RequestBody Employee empDetail){
-		empService.insertEmpDetails(empDetail);
+		empService.insertEmp(empDetail);
 		return new ResponseEntity<>("Inserted Successfully", HttpStatus.OK);
 	 }
 	
 	@DeleteMapping("/delete/{empId}")
 	ResponseEntity<String> removeEmployee(@PathVariable int empId) {
-		empService.removeEmpDetails(empId);
+		empService.removeEmp(empId);
 		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{empId}")
 	ResponseEntity<String> updateDetails(@PathVariable int empId,@RequestBody Employee empDetail) {
-		empService.updateEmpDetails(empId,empDetail);
+		empService.updateEmp(empId,empDetail);
 		return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
 	}
 

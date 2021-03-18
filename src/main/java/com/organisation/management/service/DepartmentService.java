@@ -15,12 +15,14 @@ public class DepartmentService {
 	@Autowired
 	DepartmentRepository deptRepository;
 
-	public List<Department> fetchAllDeptDetails() {
+	public List<Department> fetchAllDept() {
 		return deptRepository.findAll();
 	}
 
-	public Optional<Department> fetchDetails(int deptId) {
-		return deptRepository.findById(deptId);
+	public Department fetchDept(int deptId) {
+		 Optional<Department> deptDetail = deptRepository.findById(deptId);
+		 return deptDetail.isPresent()?deptDetail.get():new Department();
+
 	}
 
 	public void insertDeptDetails(Department deptDetail) {
