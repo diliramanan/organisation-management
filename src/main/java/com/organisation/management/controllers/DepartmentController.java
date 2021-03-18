@@ -17,40 +17,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.organisation.management.entity.Department;
 import com.organisation.management.service.DepartmentService;
 
-
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
-	
+
 	@Autowired
 	DepartmentService deptService;
-	
+
 	@GetMapping("/fetchAll")
-	ResponseEntity<List<Department>> fetchAllDept(){
+	ResponseEntity<List<Department>> fetchAllDept() {
 		return new ResponseEntity<>(deptService.fetchAllDept(), HttpStatus.OK);
 	}
-	
-	@GetMapping("/{deptId}")
-	ResponseEntity <Department> fetchDept(@PathVariable int deptId){
-		return new ResponseEntity<>(deptService.fetchDept(deptId), HttpStatus.OK);
+
+	@GetMapping("/{deptKey}")
+	ResponseEntity<Department> fetchDept(@PathVariable int deptKey) {
+		return new ResponseEntity<>(deptService.fetchDept(deptKey), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/insert")
-	ResponseEntity<String> insertDeptloyee(@RequestBody Department deptDetail){
+	ResponseEntity<String> insertDeptloyee(@RequestBody Department deptDetail) {
 		System.out.println(deptDetail.toString());
 		deptService.insertDeptDetails(deptDetail);
 		return new ResponseEntity<>("Inserted Successfully", HttpStatus.OK);
-	 }
-	
-	@DeleteMapping("/delete/{deptId}")
-	ResponseEntity<String> removeDeptloyee(@PathVariable int deptId) {
-		deptService.removeDeptDetails(deptId);
+	}
+
+	@DeleteMapping("/delete/{deptKey}")
+	ResponseEntity<String> removeDeptloyee(@PathVariable int deptKey) {
+		deptService.removeDeptDetails(deptKey);
 		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{deptId}")
-	ResponseEntity<String> updateDetails(@PathVariable int deptId,@RequestBody Department deptDetail) {
-		deptService.updateDeptDetails(deptId,deptDetail);
+	@PutMapping("/update/{deptKey}")
+	ResponseEntity<String> updateDetails(@PathVariable int deptKey, @RequestBody Department deptDetail) {
+		deptService.updateDeptDetails(deptKey, deptDetail);
 		return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
 	}
 

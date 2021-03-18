@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Employee{
+public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,15 +22,14 @@ public class Employee{
 
 	@Column
 	private String empName;
-	
+
 	@Column
 	private String empAddress;
 
-	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "departmentId", insertable = true, updatable = true, nullable = false)
+	@JoinColumn(name = "deptKey", insertable = true, updatable = true, nullable = false)
 	private Department department;
-	
+
 	public Employee() {
 		super();
 	}
@@ -73,5 +72,4 @@ public class Employee{
 				+ department + "]";
 	}
 
-	
 }

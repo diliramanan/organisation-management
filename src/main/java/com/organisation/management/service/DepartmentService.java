@@ -11,7 +11,7 @@ import com.organisation.management.repository.DepartmentRepository;
 
 @Service
 public class DepartmentService {
-	
+
 	@Autowired
 	DepartmentRepository deptRepository;
 
@@ -19,9 +19,9 @@ public class DepartmentService {
 		return deptRepository.findAll();
 	}
 
-	public Department fetchDept(int deptId) {
-		 Optional<Department> deptDetail = deptRepository.findById(deptId);
-		 return deptDetail.isPresent()?deptDetail.get():new Department();
+	public Department fetchDept(int deptKey) {
+		Optional<Department> deptDetail = deptRepository.findById(deptKey);
+		return deptDetail.isPresent() ? deptDetail.get() : new Department();
 
 	}
 
@@ -29,12 +29,12 @@ public class DepartmentService {
 		deptRepository.save(deptDetail);
 	}
 
-	public void removeDeptDetails(int deptId) {
-		deptRepository.deleteById(deptId);
+	public void removeDeptDetails(int deptKey) {
+		deptRepository.deleteById(deptKey);
 	}
 
-	public void updateDeptDetails(int deptId, Department deptDetail) {
-		Department empDetailToUpdated = deptRepository.getOne(deptId);
+	public void updateDeptDetails(int deptKey, Department deptDetail) {
+		Department empDetailToUpdated = deptRepository.getOne(deptKey);
 		empDetailToUpdated.setDepartmentName(deptDetail.getDepartmentName());
 		empDetailToUpdated.setDepartmentHead(deptDetail.getDepartmentHead());
 		deptRepository.save(empDetailToUpdated);

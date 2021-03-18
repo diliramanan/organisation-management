@@ -4,16 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id; 
+import javax.persistence.Id;
 
 @Entity
-public class Department{
-
+public class Department {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private int departmentId;
+	private int departmentKey;
 
 	@Column
 	private String departmentName;
@@ -26,11 +25,11 @@ public class Department{
 	}
 
 	public int getDepartmentId() {
-		return departmentId;
+		return departmentKey;
 	}
 
 	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
+		this.departmentKey = departmentId;
 	}
 
 	public String getDepartmentName() {
@@ -51,7 +50,7 @@ public class Department{
 
 	@Override
 	public String toString() {
-		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + ", departmentHead="
+		return "Department [departmentKey=" + departmentKey + ", departmentName=" + departmentName + ", departmentHead="
 				+ departmentHead + "]";
 	}
 
