@@ -32,6 +32,10 @@ public class EmployeeService {
 		return empRepo.findAll();
 	}
 
+	public void updateEmpDetails(Employee empDetail) {
+		empRepo.save(empDetail);
+	}
+
 	
 	
 }
