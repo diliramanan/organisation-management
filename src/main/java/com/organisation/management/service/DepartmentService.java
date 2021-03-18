@@ -31,4 +31,12 @@ public class DepartmentService {
 		deptRepository.deleteById(deptId);
 	}
 
+	public void updateDeptDetails(int deptId, Department deptDetail) {
+		Department empDetailToUpdated = deptRepository.getOne(deptId);
+		empDetailToUpdated.setDepartmentName(deptDetail.getDepartmentName());
+		empDetailToUpdated.setDepartmentHead(deptDetail.getDepartmentHead());
+		empDetailToUpdated.setEmpName(deptDetail.getEmpName());
+		deptRepository.save(empDetailToUpdated);
+	}
+
 }
