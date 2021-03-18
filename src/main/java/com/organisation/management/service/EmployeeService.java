@@ -34,8 +34,6 @@ public class EmployeeService {
 
 	public void updateEmpDetails(int empId,Employee empDetail) {
 		Employee empDetailToUpdated = empRepo.getOne(empId);
-		empDetailToUpdated.setDepartmentName(empDetail.getDepartmentName());
-		empDetailToUpdated.setDepartmentId(empDetail.getDepartmentId());
 		empDetailToUpdated.setEmpName(empDetail.getEmpName());
 		empRepo.save(empDetailToUpdated);
 	}

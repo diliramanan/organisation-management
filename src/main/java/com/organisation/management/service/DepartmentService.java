@@ -35,7 +35,6 @@ public class DepartmentService {
 		Department empDetailToUpdated = deptRepository.getOne(deptId);
 		empDetailToUpdated.setDepartmentName(deptDetail.getDepartmentName());
 		empDetailToUpdated.setDepartmentHead(deptDetail.getDepartmentHead());
-		empDetailToUpdated.setEmpName(deptDetail.getEmpName());
 		deptRepository.save(empDetailToUpdated);
 	}
 

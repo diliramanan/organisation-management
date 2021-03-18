@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,29 +26,31 @@ public class EmployeeController {
 	EmployeeService empService;
 	
 	@GetMapping("/fetchAll")
-	List<Employee> fetchAllDetails(){
-		return empService.fetchAllEmpDetails();
+	ResponseEntity<List<Employee>> fetchAllDetails(){
+		return new ResponseEntity<>(empService.fetchAllEmpDetails(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{empId}")
-	 Optional<Employee> employeeDetails(@PathVariable int empId){
-		return empService.fetchDetails(empId);
+	ResponseEntity<Optional<Employee>> employeeDetails(@PathVariable int empId){
+		return new ResponseEntity<>(empService.fetchDetails(empId), HttpStatus.OK);
 	}
 	
 	@PostMapping("/insert")
-	 void insertEmployee(@RequestBody Employee empDetail){
-		System.out.println(empDetail.toString());
+	ResponseEntity<String> insertEmployee(@RequestBody Employee empDetail){
 		empService.insertEmpDetails(empDetail);
+		return new ResponseEntity<>("Inserted Successfully", HttpStatus.OK);
 	 }
 	
 	@DeleteMapping("/delete/{empId}")
-	void removeEmployee(@PathVariable int empId) {
+	ResponseEntity<String> removeEmployee(@PathVariable int empId) {
 		empService.removeEmpDetails(empId);
+		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{empId}")
-	void updateDetails(@PathVariable int empId,@RequestBody Employee empDetail) {
+	ResponseEntity<String> updateDetails(@PathVariable int empId,@RequestBody Employee empDetail) {
 		empService.updateEmpDetails(empId,empDetail);
+		return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
 	}
 
 }

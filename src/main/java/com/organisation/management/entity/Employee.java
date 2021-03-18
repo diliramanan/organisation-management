@@ -1,10 +1,14 @@
 package com.organisation.management.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,23 +19,16 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int empId;
+
 	@Column
 	private String empName;
-	@Column
-	private String departmentName;
-	@Column
-	private String departmentId;
 
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "departmentId", insertable = true, updatable = true, nullable = false)
+	private Department department;
+	
 	public Employee() {
 		super();
-	}
-
-	public Employee(int empId, String empName, String departmentName, String departmentId) {
-		super();
-		this.empId = empId;
-		this.empName = empName;
-		this.departmentName = departmentName;
-		this.departmentId = departmentId;
 	}
 
 	public int getEmpId() {
@@ -50,26 +47,17 @@ public class Employee {
 		this.empName = empName;
 	}
 
-	public String getDepartmentName() {
-		return departmentName;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
-
-	public String getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(String departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", departmentName=" + departmentName
-				+ ", departmentId=" + departmentId + "]";
+		return "Employee [empId=" + empId + ", empName=" + empName + ", department=" + department + "]";
 	}
 
 }
