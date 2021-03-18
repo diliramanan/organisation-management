@@ -1,7 +1,5 @@
 package com.organisation.management.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Employee implements Serializable{
-	
-	private static final long serialVersionUID = 1234567L;
+public class Employee{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +22,25 @@ public class Employee implements Serializable{
 
 	@Column
 	private String empName;
+	
+	@Column
+	private String empAddress;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "departmentId", insertable = true, updatable = true, nullable = false)
 	private Department department;
 	
 	public Employee() {
 		super();
+	}
+
+	public String getEmpAddress() {
+		return empAddress;
+	}
+
+	public void setEmpAddress(String empAddress) {
+		this.empAddress = empAddress;
 	}
 
 	public int getEmpId() {
@@ -61,7 +69,9 @@ public class Employee implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", department=" + department + "]";
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empAddress=" + empAddress + ", department="
+				+ department + "]";
 	}
 
+	
 }

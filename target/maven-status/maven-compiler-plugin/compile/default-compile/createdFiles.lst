@@ -1,0 +1,10 @@
+com\organisation\management\repository\DepartmentRepository.class
+com\organisation\management\entity\Department.class
+com\organisation\management\OrganisationManagementApplication.class
+com\organisation\management\service\DepartmentService.class
+com\organisation\management\entity\Employee.class
+com\organisation\management\controllers\EmployeeController.class
+com\organisation\management\ServletInitializer.class
+com\organisation\management\service\EmployeeService.class
+com\organisation\management\controllers\DepartmentController.class
+com\organisation\management\repository\EmployeeRepository.class
