@@ -34,6 +34,7 @@ public class EmployeeController {
 	
 	@PostMapping("/insert")
 	 void insertEmployee(@RequestBody Employee empDetail){
+		System.out.println(empDetail.toString());
 		empService.insertEmpDetails(empDetail);
 	 }
 	

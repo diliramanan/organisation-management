@@ -16,7 +16,7 @@ public class EmployeeService {
 	EmployeeRepository empRepo;
 	
 	public Optional<Employee> fetchDetails(int empId) {
-		System.out.println(empRepo.findById(empId).get()+" "+empId);
+		System.out.println(empRepo.findById(empId).toString());
 		return empRepo.findById(empId); 
 	}
 
