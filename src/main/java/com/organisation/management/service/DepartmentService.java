@@ -3,13 +3,17 @@ package com.organisation.management.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.organisation.management.entity.Department;
+import com.organisation.management.exceptions.ExceptionHandlerObj;
 import com.organisation.management.repository.DepartmentRepository;
 
 @Service
+@Transactional
 public class DepartmentService {
 
 	@Autowired
@@ -21,8 +25,9 @@ public class DepartmentService {
 
 	public Department fetchDept(int deptKey) {
 		Optional<Department> deptDetail = deptRepository.findById(deptKey);
-		return deptDetail.isPresent() ? deptDetail.get() : new Department();
-
+		if (!deptDetail.isPresent())
+			throw new ExceptionHandlerObj("Invalid Department Key: " + deptKey);
+		return deptDetail.get();
 	}
 
 	public void insertDeptDetails(Department deptDetail) {
@@ -30,14 +35,21 @@ public class DepartmentService {
 	}
 
 	public void removeDeptDetails(int deptKey) {
+		if (!deptRepository.existsById(deptKey))
+			throw new ExceptionHandlerObj("Invalid Department Key: " + deptKey);
 		deptRepository.deleteById(deptKey);
 	}
 
-	public void updateDeptDetails(int deptKey, Department deptDetail) {
-		Department empDetailToUpdated = deptRepository.getOne(deptKey);
-		empDetailToUpdated.setDepartmentName(deptDetail.getDepartmentName());
-		empDetailToUpdated.setDepartmentHead(deptDetail.getDepartmentHead());
-		deptRepository.save(empDetailToUpdated);
+	public boolean updateDeptDetails(int deptKey, Department deptDetail) {
+		if (deptRepository.existsById(deptKey)) {
+			Department empDetailToUpdated = deptRepository.getOne(deptKey);
+			empDetailToUpdated.setDepartmentName(deptDetail.getDepartmentName());
+			empDetailToUpdated.setDepartmentHead(deptDetail.getDepartmentHead());
+			deptRepository.save(empDetailToUpdated);
+		} else
+			throw new ExceptionHandlerObj("Invalid Department Key: " + deptKey);
+
+		return true;
 	}
 
 }

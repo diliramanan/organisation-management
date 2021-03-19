@@ -8,4 +8,5 @@ import com.organisation.management.entity.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
+	Employee findByEmpId(int empId);
 }
