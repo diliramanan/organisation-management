@@ -12,7 +12,7 @@
 	<groupId>com.organisation</groupId>
 	<artifactId>organisationManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>organisationManagement</name>
 	<description>Demo project for Siemens</description>
 	<properties>
@@ -24,7 +24,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>2.1.7.RELEASE</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>

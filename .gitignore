@@ -40,3 +40,14 @@ target/classes/application.properties
 target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 target/m2e-wtp/web-resources/META-INF/maven/com.organisation/organisationManagement/pom.properties
 target/m2e-wtp/web-resources/META-INF/maven/com.organisation/organisationManagement/pom.xml
+target/organisationManagement-0.0.1-SNAPSHOT.jar.original
+target/organisationManagement-0.0.1-SNAPSHOT.war.original
+target/organisationManagement-0.0.1-SNAPSHOT/WEB-INF/classes/application.properties
+*.properties
+target/organisationManagement-0.0.1-SNAPSHOT.war.original
+target/organisationManagement-0.0.1-SNAPSHOT/WEB-INF/classes/application.properties
+target/organisationManagement-0.0.1-SNAPSHOT.war.original
+*.properties
+*.original
+target/organisationManagement-0.0.1-SNAPSHOT/WEB-INF/classes/application.properties
+target/organisationManagement-0.0.1-SNAPSHOT.war.original

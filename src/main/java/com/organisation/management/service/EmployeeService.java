@@ -38,6 +38,7 @@ public class EmployeeService {
 	}
 
 	public List<Employee> fetchAllEmpDetails() {
+		empRepo.findAllByOrderByEmpName(); 
 		return empRepo.findAll();
 	}
 
